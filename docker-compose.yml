@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  web:
+    container_name: nodepostgre
+    restart: always
+    build: .
+    ports:
+      - "5000:3000"
+    links:
+      - postgre
+  postgre:
+    container_name: postgredatabase
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: pruebas
+    ports: 
+      - "5432:5432"
+    logging:
+      driver: none
